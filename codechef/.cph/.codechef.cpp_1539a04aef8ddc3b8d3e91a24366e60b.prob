@@ -1,1 +1,0 @@
-{"name":"Local: codechef","url":"/home/gurdayal-s/Desktop/hello_world/codechef/codechef.cpp","tests":[{"id":1635692424829,"input":"4\n3\n2 2 2\n4\n2 2 2 4\n2\n0 0\n3\n1 2 3\n","output":"1\n2\n0\n2\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/gurdayal-s/Desktop/hello_world/codechef/codechef.cpp","group":"local","local":true}
