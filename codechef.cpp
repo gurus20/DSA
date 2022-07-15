@@ -1,39 +1,71 @@
 // { Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
+// Initial Template for C++
 
-int *Rearrange(int *arr, int n);
+// C program for implementation of Bubble sort
+#include <stdio.h>
 
+// swapping the elements
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution
+{
+public:
+    // Function to sort the array using bubble sort algorithm.
+    void bubbleSort(int arr[], int n)
+    {
+        for (int i = 0; i < n - 1; i++){
+            bool swapped = false;
+            for (int j = 0; j < n - i - 1; j++){
+                if (arr[j] > arr[j + 1]){
+                    swap(&arr[j], &arr[j + 1]);
+                    swapped = true;
+                }
+            }
+            if (!swapped)
+                break;
+        }
+    }
+};
+
+// { Driver Code Starts.
+
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+// Driver program to test above functions
 int main()
 {
-    // code
+    int arr[1000], n, T, i;
 
-    string str;
-    cin >> str;
-    
-    cout << str.size();
-    
+    scanf("%d", &T);
 
-    return 0;
-} // } Driver Code Ends
-
-int *Rearrange(int *arr, int n)
-{
-    int* b = new int[n];
-    for (int i = 0; i < n; i++)
+    while (T--)
     {
 
-        if (arr[i] != -1)
-        {
-            // cout << i  << " " << arr[i] << endl;
-            if (arr[i] == i){
-                b[i] = arr[i];
-            }
-            else
-                b[arr[i]] = arr[i];
-        }
-        else
-        b[i] = -1;    
+        scanf("%d", &n);
+
+        for (i = 0; i < n; i++)
+            scanf("%d", &arr[i]);
+
+        Solution ob;
+
+        ob.bubbleSort(arr, n);
+        printArray(arr, n);
     }
-    return b;
-}
+    return 0;
+    ;
+} // } Driver Code Ends
