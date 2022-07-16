@@ -1,71 +1,63 @@
-// { Driver Code Starts
-// Initial Template for C++
+//{ Driver Code Starts
+// C++ program to remove recurring digits from
+// a given number
+#include <bits/stdc++.h>
+using namespace std;
 
-// C program for implementation of Bubble sort
-#include <stdio.h>
-
-// swapping the elements
-void swap(int *xp, int *yp)
-{
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
 
 // } Driver Code Ends
-// User function Template for C++
 
-class Solution
-{
-public:
-    // Function to sort the array using bubble sort algorithm.
-    void bubbleSort(int arr[], int n)
-    {
-        for (int i = 0; i < n - 1; i++){
-            bool swapped = false;
-            for (int j = 0; j < n - i - 1; j++){
-                if (arr[j] > arr[j + 1]){
-                    swap(&arr[j], &arr[j + 1]);
-                    swapped = true;
-                }
+class Solution{
+    //Function to find the leaders in the array.
+    public:
+    vector<int> leaders(int a[], int n){
+        vector <int> l;
+        l.push_back(a[n-1]);
+        
+        for (int i = n - 2; i >= 0; i--){
+            if (a[i] >= l[l.size()-1]){
+                l.push_back(a[i]);
             }
-            if (!swapped)
-                break;
         }
+
+        int i = 0; int j = l.size()-1;
+        while(i<=j){
+            swap(l[i++], l[j--]);
+        }
+
+        return l;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
-
-// Driver program to test above functions
 int main()
 {
-    int arr[1000], n, T, i;
+   long long t;
+   cin >> t;//testcases
+   while (t--)
+   {
+       long long n;
+       cin >> n;//total size of array
+        
+        int a[n];
+        
+        //inserting elements in the array
+        for(long long i =0;i<n;i++){
+            cin >> a[i];
+        }
+        Solution obj;
+        //calling leaders() function
+        vector<int> v = obj.leaders(a, n);
+        
+        //printing elements of the vector
+        for(auto it = v.begin();it!=v.end();it++){
+            cout << *it << " ";
+        }
+        
+        cout << endl;
 
-    scanf("%d", &T);
+   }
+}
 
-    while (T--)
-    {
-
-        scanf("%d", &n);
-
-        for (i = 0; i < n; i++)
-            scanf("%d", &arr[i]);
-
-        Solution ob;
-
-        ob.bubbleSort(arr, n);
-        printArray(arr, n);
-    }
-    return 0;
-    ;
-} // } Driver Code Ends
+// } Driver Code Ends
