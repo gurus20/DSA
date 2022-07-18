@@ -34,8 +34,8 @@ void quick_sort(int *arr,int l,int h){
 }
 
 int main(){
-    int arr[10]={2,8,4,0,9,5,1,3,7,6};
-    int n=10;
+    int arr[20]={8, 23, 56, 32, 1, 33, 10, 98, 387, 34, 78, 44, 6, 9, 39, 54, 66, 45, 67, 6};
+    int n=20;
     int l=0,h=n-1;
     int i;
     printf("unsorted Array ");
