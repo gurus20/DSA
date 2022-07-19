@@ -6,24 +6,36 @@ struct node {
     struct node *next;
 };
 
-struct node *insert(struct node *head, int data){
+int count = 10;
+
+struct node *insert(struct node *head, int data) {
     struct node *link = (struct node *) malloc(sizeof(struct node));
     struct node *current;
+    // cout << current << " 2" << endl;
+    cout << endl;
 
     link -> data = data;
     link -> next = NULL;
 
-    if (head == NULL)
+    if (head == NULL){
         head = link;
-    
-    if (current == NULL)
-        current = head;
+        cout << head << endl;
+    }
 
+    
+    if (current == NULL){
+        current = head;
+    }
     else {
+        cout << current << endl;
         current -> next = link;
         current = link;
+        cout << current << " 1" << endl;
+        cout << current -> next << " 2" << endl;
+
     }
-    return link;
+
+    return current;
 }
 
 void printList(struct node *head){
@@ -35,22 +47,30 @@ void printList(struct node *head){
     }
 }
 
-void deleteNode(struct node *head, int data){
-    struct node *temp = head;
+// void deleteNode(struct node *head, int data){
+//     struct node *temp = head;
 
-    while (temp != NULL){
-        if (temp -> data == data){
-            struct node* delnode = temp;
-            temp = temp -> next
-        }
-        temp = temp -> next;
-    }
-}
+//     while (temp != NULL){
+//         if (temp -> data == data){
+//             struct node* delnode = temp;
+//             temp = temp -> next
+//         }
+//         temp = temp -> next;
+//     }
+// }
 
 int main(){
-    struct node *head;
+    struct node *head = NULL;
     head = insert(head, 10);
 
+    // insert(head, 20);
+
+    // insert(head, 30);
+    // insert(head, 40);
+    // insert(head, 50);
+    // insert(head, 60);
+
+    // printList(head);
 
     return 0;
 }
