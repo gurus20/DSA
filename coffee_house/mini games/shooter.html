@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shooter</title>
+
+  <script src="https://kit.fontawesome.com/af2da471d4.js" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <style>
+    #play_area {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      /* padding: 20px; */
+    }
+
+    #shooter {
+      position: absolute;
+      top: 90%;
+      left: 1000px;
+    }
+  </style>
+</head>
+
+<body style="background: url('assets/bg.gif'); width: 100%; height: 99vh;">
+  <!-- <div id="play_area" >
+  </div> -->
+  <!-- <img src="/assets/spaceship2.svg" width="100" id="shooter"> -->
+
+
+  <canvas id="play_canvas" class="bg-transparent">
+    Your browser does not support the HTML canvas tag.
+  </canvas>
+</body>
+
+<script>
+  var canvas = $('#play_canvas');
+  canvas.attr({ 'width': $('body').width(), 'height': $('body').height() });
+  var ctx = canvas[0].getContext("2d");
+  var shooter_img = new Image();
+  var shx = 10;
+  var shy = parseInt($('body').height()) - 80;
+  console.log(shy)
+  $(function () {
+    shooter_img.src = "/assets/spaceship2.svg";
+    shooter_img.setAttribute('id', 'shooter');
+    shooter_img.onload = function () {
+      ctx.drawImage(shooter_img, shx, shy, shooter_img.width * .10, shooter_img.height * .10);
+    }
+  })
+
+  $(window).on('keydown', function (e) {
+    var shooter = $('#shooter');
+    if (e.keyCode == '37') {
+      shx -= 10;
+      ctx.drawImage(shooter_img, shx, shy, shooter_img.width * .10, shooter_img.height * .10);      
+      // if (shooter.position().left - 10 > 10) {
+      // }
+    }
+    if (e.keyCode == '39') {
+      shx += 10;
+      ctx.drawImage(shooter_img, shx, shy, shooter_img.width * .10, shooter_img.height * .10);
+      // let edge = $('#play_area').width() - $('#shooter').width() - 15;
+      // console.log(edge);
+      // if ((shooter.position().left) < edge) {
+      //   shooter.css('left', shooter.position().left + 10);
+      // }
+    }
+  });
+
+
+</script>
+
+</html>

@@ -1,0 +1,115 @@
+{% include 'base.html' %}
+
+{% block main %}
+
+<style>
+  #gbox {
+    width: 360px;
+    height: 360px;
+  }
+
+  .tile {
+    background: white;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    cursor: pointer;
+  }
+</style>
+<p class="h3 text-center my-3 text-secondary fw-bold">TIC TAC TOE</p>
+
+<div class="container">
+  <div class="border m-auto bg-dark" id="gbox">
+    <div class="d-flex">
+      <div class="tile" i="0" j="0"></div>
+      <div class="tile" i="0" j="1"></div>
+      <div class="tile" i="0" j="2"></div>
+    </div>
+    <div class="d-flex">
+      <div class="tile" i="1" j="0"></div>
+      <div class="tile" i="1" j="1"></div>
+      <div class="tile" i="1" j="2"></div>
+    </div>
+    <div class="d-flex">
+      <div class="tile" i="2" j="0"></div>
+      <div class="tile" i="2" j="1"></div>
+      <div class="tile" i="2" j="2"></div>
+    </div>
+  </div>
+
+  <p class="h4 text-center my-3" id="msg" style="color:red">Player 1 : Start the game</p>
+</div>
+<script>
+  var turn = 0;
+  var winner = -1;
+  const matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
+
+  var tile = $('.tile').click(function () {
+    let i = parseInt($(this).attr('i'));
+    let j = parseInt($(this).attr('j'));
+
+    if (turn % 2 == 0) {
+      if (matrix[i][j] == -1) {
+        $(this).css('background', 'red');
+        $('#msg').text('Player 2 Turn').css('color', 'blue');
+        matrix[i][j] = 1;
+        turn++;
+        let win = check_winner();
+        console.log(win)
+        if (win != -1) {
+          $('#msg').text('Player '+ win +' Win').css('color', 'green');
+          $('.tile').css('pointer-events', 'none');
+        }
+      }
+    }
+    else {
+      if (matrix[i][j] == -1) {
+        $(this).css('background', 'blue');
+        $('#msg').text('Player 1 Turn').css('color', 'red');
+        matrix[i][j] = 2;
+        turn++;
+        let win = check_winner();
+        console.log(win)
+        if (win != -1) {
+          $('#msg').text('Player '+ win +' Win').css('color', 'green');
+          $('.tile').css('pointer-events', 'none');
+        }
+      }
+    }
+  });
+
+  function check_winner() {
+    console.log('check')
+    let win = -1;
+
+    for (var i = 0; i < 3; i++) {
+      if ((matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2]) && matrix[i][0] != -1) {
+        win = get_winner(matrix[i][0]);
+      }
+    }
+
+    for (var j = 0; j < 3; j++) {
+      if ((matrix[0][j] == matrix[1][j] && matrix[1][j] == matrix[2][j]) && matrix[0][j] != -1) {
+        win = get_winner(matrix[0][j]);
+      }
+    }
+
+    if ((matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) && matrix[0][0] != -1) {
+      win = get_winner(matrix[0][0]);
+    }
+    if ((matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) && matrix[0][2] != -1) {
+      win = get_winner(matrix[0][0]);
+    }
+    return win;
+  }
+
+  function get_winner(player) {
+    if (player == 1) {
+      return 1;
+    }
+    else {
+      return 2;
+    }
+  }
+</script>
+{% endblock %}
